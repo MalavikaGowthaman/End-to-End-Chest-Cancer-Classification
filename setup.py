@@ -7,7 +7,7 @@ __version__ = "0.0.0"
 
 REPO_NAME = "Chest-Cancer-Classification-Project"
 AUTHOR_USER_NAME = "MalavikaGowthaman"
-SRC_REPO = "cnnClassifier"
+SRC_REPO = "classifier"
 AUTHOR_EMAIL = "malavikag115@gmail.com"
 
 setuptools.setup(

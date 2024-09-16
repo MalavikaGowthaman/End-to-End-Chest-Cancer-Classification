@@ -1,7 +1,7 @@
 import os
 from box.exceptions import BoxValueError
 import yaml
-from cnnClassifier import logger
+from classifier import logger
 import json
 import joblib
 from ensure import ensure_annotations
@@ -13,29 +13,44 @@ import base64
 
 
 @ensure_annotations
-def read_yaml(path_to_yaml: Path) -> ConfigBox:
-    """reads yaml file and returns
+# def read_yaml(path_to_yaml: Path) -> ConfigBox:
+#     """reads yaml file and returns
 
-    Args:
-        path_to_yaml (str): path like input
+#     Args:
+#         path_to_yaml (str): path like input
 
-    Raises:
-        ValueError: if yaml file is empty
-        e: empty file
+#     Raises:
+#         ValueError: if yaml file is empty
+#         e: empty file
 
-    Returns:
-        ConfigBox: ConfigBox type
-    """
+#     Returns:
+#         ConfigBox: ConfigBox type
+#     """
+#     try:
+#         with open(path_to_yaml) as yaml_file:
+#             content = yaml.safe_load(yaml_file)
+#             logger.info(f"yaml file: {path_to_yaml} loaded successfully")
+#             return ConfigBox(content)
+#     except BoxValueError:
+#         raise ValueError("yaml file is empty")
+#     except Exception as e:
+#         raise e
+    
+
+@ensure_annotations
+
+def read_yaml(path_to_yaml):
     try:
-        with open(path_to_yaml) as yaml_file:
-            content = yaml.safe_load(yaml_file)
-            logger.info(f"yaml file: {path_to_yaml} loaded successfully")
-            return ConfigBox(content)
-    except BoxValueError:
-        raise ValueError("yaml file is empty")
+        with open(path_to_yaml, 'r') as file:
+            content = yaml.safe_load(file)
+            if content:
+                return ConfigBox(content)
+            else:
+                raise ValueError("yaml file is empty")
+    except yaml.YAMLError as e:
+        raise ValueError(f"Error parsing YAML file: {e}")
     except Exception as e:
         raise e
-    
 
 
 @ensure_annotations
