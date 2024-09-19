@@ -1,4 +1,4 @@
-tensorflow == 2.16.1
+tensorflow==2.12.0
 pandas
 gdown
 dvc
@@ -16,6 +16,10 @@ types-pyYAML
 scipy
 Flask
 Flask-Cors
+streamlit==1.18.1
+numpy==1.23.5
+pillow
+setuptools
 streamlit==1.18.1
 numpy==1.23.5
 pillow
