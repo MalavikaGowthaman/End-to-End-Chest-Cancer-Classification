@@ -1,5 +1,4 @@
---upgrade pip
-tensorflow == 2.16.0
+tensorflow == 2.16.1
 pandas
 gdown
 dvc
