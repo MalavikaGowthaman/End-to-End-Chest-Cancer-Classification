@@ -19,6 +19,7 @@ Flask-Cors
 streamlit==1.18.1
 numpy==1.23.5
 pillow
+distutils
 
 
 -e .
