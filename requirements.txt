@@ -21,10 +21,7 @@ numpy==1.23.5
 pillow
 setuptools
 streamlit==1.18.1
-numpy==1.23.5
-pillow
-setuptools
-distutils
+
 
 
 
