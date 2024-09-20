@@ -63,11 +63,6 @@ st.markdown("""
 # Streamlit UI
 st.markdown('<h1 class="custom-title">🩺Chest Cancer Classification🎗️</h1>', unsafe_allow_html=True)
 
-# # Set the title in the main section
-# st.title("🩺 Chest Cancer Classification")
-
-# Your main content here
-# st.write("Welcome to the Chest Cancer Classification app. Please upload an image for classification.")
 
 # Upload image
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "png", "jpeg"])
