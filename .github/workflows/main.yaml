@@ -99,7 +99,6 @@ jobs:
 
       - name: Wait for Streamlit to be ready
         run: |
-          sleep 10  # wait for the app to start
           curl -f http://localhost:8501 || exit 1
 
       - name: Clean previous images and containers
