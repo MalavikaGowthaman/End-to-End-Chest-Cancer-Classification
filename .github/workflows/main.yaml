@@ -93,7 +93,7 @@ jobs:
       # Stop and remove any running container if needed
       - name: Stop and remove container if running
         run: |
-          docker ps -q --filter "name=new_cnncls" | grep -q . && docker stop new_cnncls && docker rm -fv new_cnncls
+          docker ps -q --filter "name=cnncls" | grep -q . && docker stop new_cnncls && docker rm -fv cnncls
        
       - name: Run Docker Image to serve users
         run: |
