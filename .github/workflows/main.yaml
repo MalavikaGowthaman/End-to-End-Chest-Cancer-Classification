@@ -56,9 +56,6 @@ jobs:
           ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY_NAME }}
           IMAGE_TAG: latest
         run: |
-          # Build a docker container and
-          # push it to ECR so that it can
-          # be deployed to ECS.
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_ENV
@@ -93,7 +90,11 @@ jobs:
       # Stop and remove any running container if needed
       - name: Stop and remove container if running
         run: |
-          docker ps -q --filter "name=cnncls" | grep -q . && docker stop new_cnncls && docker rm -fv cnncls
+          if [ "$(docker ps -q --filter name=cnncls)" ]; then
+            docker stop cnncls && docker rm -fv cnncls;
+          else
+            echo "No container named cnncls is running.";
+          fi
        
       - name: Run Docker Image to serve users
         run: |
@@ -107,4 +108,3 @@ jobs:
         run: |
           docker system prune -f
           docker image prune -f
-      
