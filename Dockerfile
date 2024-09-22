@@ -1,14 +1,20 @@
 FROM python:3.9-slim-buster
 
-RUN apt update -y && apt install awscli -y
+# Update and install AWS CLI in a single RUN command
+RUN apt update -y && apt install -y awscli curl
+
 WORKDIR /app
 
 COPY . /app
 
-RUN pip install --upgrade pip
+# Upgrade pip and install dependencies
+RUN pip install --upgrade pip && pip install -r requirements.txt
 
-RUN pip install -r requirements.txt
+# Expose the port that Streamlit will run on
+EXPOSE 8080
 
-CMD ["python3", "finalapp.py"]
+# Healthcheck command
+HEALTHCHECK CMD curl --fail http://localhost:8080/_stcore/health || exit 1
 
-
+# Set the entrypoint for the container
+ENTRYPOINT ["streamlit", "run", "finalapp.py", "--server.port=8080", "--server.address=0.0.0.0"]
