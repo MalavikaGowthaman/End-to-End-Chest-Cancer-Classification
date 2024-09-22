@@ -79,7 +79,7 @@ if uploaded_file is not None:
     # Display result based on prediction
     if result == 0:
         st.markdown("<h1 style='text-align: center; color: #ff0000;'>Cancer Detected</h1>", unsafe_allow_html=True)
-        st.write("It appears that the image shows signs of cancer. Please consult a healthcare professional for further analysis.")
+        st.write("It appears that the image shows signs of cancer. Please consult a healthcare professional for further analysis and treatment.")
     elif result == 1:
         st.markdown("<h1 style='text-align: center; color: #00ff00;'>Normal</h1>", unsafe_allow_html=True)
         st.write("The image appears normal. However, it's always good to follow up with regular check-ups.")
